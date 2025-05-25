@@ -1,40 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🧊 PixelMint UI
 
-## Getting Started
+**Freshly crafted retro-styled React components.**  
+PixelMint UI is a modern component library that brings back the charm of classic interfaces with pixel-perfect design, nostalgic vibes, and blazing-fast performance.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- 🎮 **Retro Aesthetics** – Inspired by old-school UIs, pixel fonts, and neon hues.
+- ⚡ **Blazing Fast** – Built with performance-first React & Tailwind CSS.
+- 🧱 **Composable** – Highly customizable and easy to compose.
+- 🌗 **Dark Mode Ready** – Built-in support for dark/light themes.
+- 🧪 **Type-safe** – Written in TypeScript with full IntelliSense support.
+- 📚 **Storybook Included** – Preview and test components in isolation.
+
+---
+
+## 🚀 Getting Started
+
+Install PixelMint UI into your React + Tailwind project:
 
 ```bash
-npm run dev
+npm install pixelmint-ui
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn add pixelmint-ui
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then import styles in your `tailwind.config.js` and your component files:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```ts
+// tailwind.config.js
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/pixelmint-ui/**/*.{js,ts,jsx,tsx}"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```tsx
+// Example usage
+import { Button } from "pixelmint-ui";
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+export default function App() {
+  return <Button variant="ghost">Start Game</Button>;
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧩 Components Included
 
-To learn more about Next.js, take a look at the following resources:
+- ✅ `Button`
+- ✅ `Input`
+- ✅ `Card`
+- ✅ `Dialog / Modal`
+- ✅ `Tooltip`
+- ✅ `Switch`
+- ✅ `Checkbox`
+- ✅ `Tabs`
+- ... and more coming soon!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+PixelMint components use Tailwind under the hood and are fully customizable.  
+Override styles using `className`, extend variants, or compose your own.
+
+```tsx
+<Button className="bg-pink-600 hover:bg-pink-700 text-white">
+  Retro Pink
+</Button>
+```
+
+You can also configure the design system with Tailwind’s `theme.extend`.
+
+---
+
+## 💡 Philosophy
+
+PixelMint UI is made for builders who love retro UI but demand modern developer experience.  
+We aim to recreate the **feel of 90s interfaces** — in a fast, minimal, and accessible package.
+
+---
+
+## 📦 Roadmap
+
+- [x] Core component set
+- [ ] Dark mode support
+- [ ] Theme switcher utility
+- [ ] CLI to scaffold components
+- [ ] Component playground (interactive docs)
+- [ ] VS Code extension (Pixel Previewer 👀)
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome!  
+Open issues, suggest new features, or contribute directly.
+
+```bash
+git clone https://github.com/khushhalgarg112/pixelmint-ui
+cd pixelmint-ui
+pnpm install
+pnpm dev
+```
+
+---
+
+## 📄 License
+
+MIT © [Khushhal Garg](https://github.com/khushhalgarg112)
+
+---
+
+> 🕹️ Designed with nostalgia. Coded with love.
