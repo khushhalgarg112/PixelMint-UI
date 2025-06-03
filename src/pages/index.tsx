@@ -1,5 +1,5 @@
 import FaqSection from "@/components/TestComponent";
-import { Button } from "@/lib/components";
+import { Button, Input } from "@/lib/components";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -60,6 +60,84 @@ export default function Home() {
                   <Button variant="ghost" size="sm">Small</Button>
                   <Button variant="ghost" size="md">Medium</Button>
                   <Button variant="ghost" size="lg">Large</Button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Input Showcase */}
+          <section className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Input Variants</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Default</h3>
+                  <Input
+                    variant="default"
+                    label="Default Input"
+                    placeholder="Type something..."
+                  />
+                  <Input
+                    variant="default"
+                    label="With Error"
+                    error="This field is required"
+                    placeholder="Type something..."
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Bordered</h3>
+                  <Input
+                    variant="bordered"
+                    label="Bordered Input"
+                    placeholder="Type something..."
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Ghost</h3>
+                  <Input
+                    variant="ghost"
+                    label="Ghost Input"
+                    placeholder="Type something..."
+                  />
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Retro</h3>
+                  <Input
+                    variant="retro"
+                    label="Retro Input"
+                    placeholder="Type something..."
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Modern</h3>
+                  <Input
+                    variant="modern"
+                    label="Modern Input"
+                    placeholder="Type something..."
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Different Sizes</h3>
+                  <Input
+                    variant="default"
+                    size="sm"
+                    label="Small Input"
+                    placeholder="Small..."
+                  />
+                  <Input
+                    variant="default"
+                    size="md"
+                    label="Medium Input"
+                    placeholder="Medium..."
+                  />
+                  <Input
+                    variant="default"
+                    size="lg"
+                    label="Large Input"
+                    placeholder="Large..."
+                  />
                 </div>
               </div>
             </div>
