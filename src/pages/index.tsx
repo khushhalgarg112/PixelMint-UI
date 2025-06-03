@@ -1,5 +1,5 @@
 import FaqSection from "@/components/TestComponent";
-import { Button, Input } from "@/lib/components";
+import { Button, Input, Tooltip } from "@/lib/components";
 import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
@@ -138,6 +138,64 @@ export default function Home() {
                     label="Large Input"
                     placeholder="Large..."
                   />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Tooltip Showcase */}
+          <section className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Tooltip Variants</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+              <div className="space-y-4">
+                <h3 className="font-semibold">Default</h3>
+                <div className="flex justify-center">
+                  <Tooltip content="This is a default tooltip" delayDuration={100}>
+                    <Button variant="default">Hover me</Button>
+                  </Tooltip>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Bordered</h3>
+                <div className="flex justify-center">
+                  <Tooltip variant="bordered" content="This is a bordered tooltip" delayDuration={100}>
+                    <Button variant="default">Hover me</Button>
+                  </Tooltip>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Ghost</h3>
+                <div className="flex justify-center">
+                  <Tooltip variant="ghost" content="This is a ghost tooltip" delayDuration={100}>
+                    <Button variant="default">Hover me</Button>
+                  </Tooltip>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Retro</h3>
+                <div className="flex justify-center">
+                  <Tooltip variant="retro" content="This is a retro tooltip" delayDuration={100}>
+                    <Button variant="default">Hover me</Button>
+                  </Tooltip>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Modern</h3>
+                <div className="flex justify-center">
+                  <Tooltip variant="modern" content="This is a modern tooltip" delayDuration={100}>
+                    <Button variant="default">Hover me</Button>
+                  </Tooltip>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Different Positions</h3>
+                <div className="flex justify-center gap-4">
+                  <Tooltip content="Top tooltip" side="top" delayDuration={100}>
+                    <Button variant="default">Top</Button>
+                  </Tooltip>
+                  <Tooltip content="Bottom tooltip" side="bottom" delayDuration={100}>
+                    <Button variant="default">Bottom</Button>
+                  </Tooltip>
                 </div>
               </div>
             </div>
