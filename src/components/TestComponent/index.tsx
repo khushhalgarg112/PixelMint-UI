@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { Accordion } from "../UI/Accordian"; // adjust path as per your project structure
+import { Accordion } from "@/lib/components";
 
 export default function FaqSection() {
-  const faqItems1 = [
+  const faqItems = [
     {
       title: "What is Pixel Mint?",
       content: (
@@ -15,8 +15,6 @@ export default function FaqSection() {
       ),
       defaultOpen: true,
     },
-  ];
-  const faqItems2 = [
     {
       title: "Is it open source?",
       content: (
@@ -26,9 +24,6 @@ export default function FaqSection() {
         </p>
       ),
     },
-  ];
-
-  const faqItems3 = [
     {
       title: "Can I use it in commercial projects?",
       content: (
@@ -44,9 +39,13 @@ export default function FaqSection() {
       <h2 className="text-2xl font-bold mb-6 text-center">
         Frequently Asked Questions
       </h2>
-      <Accordion items={faqItems1} variant="default" allowMultipleOpen />
-      <Accordion items={faqItems2} variant="ghost" allowMultipleOpen />
-      <Accordion items={faqItems3} variant="bordered" allowMultipleOpen />
+      <div className="space-y-4">
+        <Accordion items={faqItems} variant="default" allowMultipleOpen />
+        <Accordion items={faqItems} variant="bordered" allowMultipleOpen />
+        <Accordion items={faqItems} variant="retro" allowMultipleOpen />
+        <Accordion items={faqItems} variant="modern" allowMultipleOpen />
+        <Accordion items={faqItems} variant="ghost" allowMultipleOpen />
+      </div>
     </section>
   );
 }

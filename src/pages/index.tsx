@@ -1,10 +1,6 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Button } from "@/components/Button";
-import { BoltIcon, BriefcaseIcon, FileTextIcon, RocketIcon, ShieldCheckIcon } from "lucide-react";
-import { GlassRetroButton } from "@/components/GlassRetroButton";
-import { ThreeDButton } from "@/components/ThreeDButton";
 import FaqSection from "@/components/TestComponent";
+import { Button } from "@/lib/components";
+import { Geist, Geist_Mono } from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,50 +16,59 @@ const geistMono = Geist_Mono({
 export default function Home() {
   return (
     <div className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
-      <main className="p-10">
-        <h1>Modern Design Based on Shadcn, ChakraUI  tce</h1>
-        <div className="space-y-4 flex gap-4">
-          <Button>Default</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="destructive">Delete</Button>
-          <Button variant="link" size="sm">Learn More</Button>
-          <Button variant="gradient" size="lg">Launch App</Button>
-          <Button variant="neumorphic" icon={<RocketIcon size={16} />}>Power</Button>
-          <Button loading>Saving...</Button>
-          <Button size="icon" icon={<RocketIcon size={18} />} />
-        </div>
-        <div className="mt-10 space-y-4">
-          <h1>Glassmorphism and Neon</h1>
-          <div className="bg-gradient-to-tr from-zinc-900 to-zinc-800 p-8">
-            <GlassRetroButton variant="glass" className="m-2">Glass Button</GlassRetroButton>
-            <GlassRetroButton variant="neon" icon={<BoltIcon />}>Neon</GlassRetroButton>
-          </div>
-          <h1>Retro and Modern</h1>
-          <div className="flex gap-4">
-            <GlassRetroButton variant="retro">Retro</GlassRetroButton>
-            <GlassRetroButton variant="modern">Modern</GlassRetroButton>
-            <GlassRetroButton variant="outline">Outline</GlassRetroButton>
-          </div>
-          <h1>3D Button</h1>
-          <div className="flex gap-6 p-10 bg-black min-h-screen items-start">
-            <ThreeDButton
-              label="Documents"
-              icon={<FileTextIcon className="w-10 h-10 text-pink-500" />}
-            />
-            <ThreeDButton
-              label="Projects"
-              icon={<BriefcaseIcon className="w-10 h-10 text-yellow-500" />}
-            />
-          </div>
+      <main className="min-h-screen p-8">
+        <div className="max-w-4xl mx-auto space-y-12">
+          {/* Button Showcase */}
+          <section className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Button Variants</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="space-y-4">
+                <h3 className="font-semibold">Default</h3>
+                <div className="space-y-2">
+                  <Button variant="default" size="sm">Small</Button>
+                  <Button variant="default" size="md">Medium</Button>
+                  <Button variant="default" size="lg">Large</Button>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Bordered</h3>
+                <div className="space-y-2">
+                  <Button variant="bordered" size="sm">Small</Button>
+                  <Button variant="bordered" size="md">Medium</Button>
+                  <Button variant="bordered" size="lg">Large</Button>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Retro</h3>
+                <div className="space-y-2">
+                  <Button variant="retro" size="sm">Small</Button>
+                  <Button variant="retro" size="md">Medium</Button>
+                  <Button variant="retro" size="lg">Large</Button>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Modern</h3>
+                <div className="space-y-2">
+                  <Button variant="modern" size="sm">Small</Button>
+                  <Button variant="modern" size="md">Medium</Button>
+                  <Button variant="modern" size="lg">Large</Button>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <h3 className="font-semibold">Ghost</h3>
+                <div className="space-y-2">
+                  <Button variant="ghost" size="sm">Small</Button>
+                  <Button variant="ghost" size="md">Medium</Button>
+                  <Button variant="ghost" size="lg">Large</Button>
+                </div>
+              </div>
+            </div>
+          </section>
 
+          {/* FAQ Section */}
+          <FaqSection />
         </div>
-      </main>
-    <div
-      className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-     <p>Hello</p>
-     <FaqSection />
-    </div>
+      </main >
+    </div >
   );
 }
