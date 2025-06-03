@@ -4,6 +4,7 @@ import { Button } from "@/components/Button";
 import { BoltIcon, BriefcaseIcon, FileTextIcon, RocketIcon, ShieldCheckIcon } from "lucide-react";
 import { GlassRetroButton } from "@/components/GlassRetroButton";
 import { ThreeDButton } from "@/components/ThreeDButton";
+import FaqSection from "@/components/TestComponent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +15,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
 
 export default function Home() {
   return (
@@ -57,6 +59,11 @@ export default function Home() {
 
         </div>
       </main>
+    <div
+      className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
+    >
+     <p>Hello</p>
+     <FaqSection />
     </div>
   );
 }
