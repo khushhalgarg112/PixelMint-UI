@@ -14,6 +14,7 @@ import {
 } from "@/lib/components";
 import { Geist, Geist_Mono } from "next/font/google";
 import { useState } from "react";
+import { Textarea } from '@/lib/components/textarea';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -799,6 +800,84 @@ export default function Home() {
 
           {/* FAQ Section */}
           <FaqSection />
+
+          {/* Textarea Component */}
+          <section className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Textarea Variants</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Default</h3>
+                  <Textarea
+                    variant="default"
+                    label="Default Textarea"
+                    placeholder="Type something..."
+                  />
+                  <Textarea
+                    variant="default"
+                    label="With Error"
+                    error="This field is required"
+                    placeholder="Type something..."
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Bordered</h3>
+                  <Textarea
+                    variant="bordered"
+                    label="Bordered Textarea"
+                    placeholder="Type something..."
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Ghost</h3>
+                  <Textarea
+                    variant="ghost"
+                    label="Ghost Textarea"
+                    placeholder="Type something..."
+                  />
+                </div>
+              </div>
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Retro</h3>
+                  <Textarea
+                    variant="retro"
+                    label="Retro Textarea"
+                    placeholder="Type something..."
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Modern</h3>
+                  <Textarea
+                    variant="modern"
+                    label="Modern Textarea"
+                    placeholder="Type something..."
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-semibold">Different Sizes</h3>
+                  <Textarea
+                    variant="default"
+                    size="sm"
+                    label="Small Textarea"
+                    placeholder="Small..."
+                  />
+                  <Textarea
+                    variant="default"
+                    size="md"
+                    label="Medium Textarea"
+                    placeholder="Medium..."
+                  />
+                  <Textarea
+                    variant="default"
+                    size="lg"
+                    label="Large Textarea"
+                    placeholder="Large..."
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </main>
     </div>
