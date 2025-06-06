@@ -15,6 +15,10 @@ import {
 import { Geist, Geist_Mono } from "next/font/google";
 import { useState } from "react";
 import { Textarea } from '@/lib/components/textarea';
+import { Select } from "@/lib/components/select";
+import { Radio } from "@/lib/components/radio";
+import { Checkbox } from "@/lib/components/checkbox";
+import { Slider } from "@/lib/components/slider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +40,8 @@ export default function Home() {
   });
 
   const [showSkeletons, setShowSkeletons] = useState(true);
+  const [selectedValue, setSelectedValue] = useState("option1");
+  const [checked, setChecked] = useState(false);
 
   const openDialog = (variant) => {
     setDialogStates((prev) => ({ ...prev, [variant]: true }));
@@ -878,6 +884,159 @@ export default function Home() {
               </div>
             </div>
           </section>
+
+          {/* Select Showcase */}
+          <section className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Select Variants</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Select variant="default" label="Default Select">
+                <Select.Item value="option1">Option 1</Select.Item>
+                <Select.Item value="option2">Option 2</Select.Item>
+                <Select.Item value="option3">Option 3</Select.Item>
+              </Select>
+
+              <Select variant="bordered" label="Bordered Select">
+                <Select.Item value="option1">Option 1</Select.Item>
+                <Select.Item value="option2">Option 2</Select.Item>
+                <Select.Item value="option3">Option 3</Select.Item>
+              </Select>
+
+              <Select variant="ghost" label="Ghost Select">
+                <Select.Item value="option1">Option 1</Select.Item>
+                <Select.Item value="option2">Option 2</Select.Item>
+                <Select.Item value="option3">Option 3</Select.Item>
+              </Select>
+
+              <Select variant="retro" label="Retro Select">
+                <Select.Item value="option1">Option 1</Select.Item>
+                <Select.Item value="option2">Option 2</Select.Item>
+                <Select.Item value="option3">Option 3</Select.Item>
+              </Select>
+
+              <Select variant="modern" label="Modern Select">
+                <Select.Item value="option1">Option 1</Select.Item>
+                <Select.Item value="option2">Option 2</Select.Item>
+                <Select.Item value="option3">Option 3</Select.Item>
+              </Select>
+            </div>
+          </section>
+
+          {/* Checkbox Showcase */}
+          <section className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Checkbox Variants</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Checkbox
+                variant="default"
+                label="Default Checkbox"
+                checked={checked}
+                onCheckedChange={setChecked}
+              />
+
+              <Checkbox
+                variant="bordered"
+                label="Bordered Checkbox"
+                checked={checked}
+                onCheckedChange={setChecked}
+              />
+
+              <Checkbox
+                variant="ghost"
+                label="Ghost Checkbox"
+                checked={checked}
+                onCheckedChange={setChecked}
+              />
+
+              <Checkbox
+                variant="retro"
+                label="Retro Checkbox"
+                checked={checked}
+                onCheckedChange={setChecked}
+              />
+
+              <Checkbox
+                variant="modern"
+                label="Modern Checkbox"
+                checked={checked}
+                onCheckedChange={setChecked}
+              />
+            </div>
+          </section>
+
+          {/* Slider Showcase */}
+          <div className="space-y-8">
+            <h2 className="text-2xl font-bold">Slider</h2>
+            <div className="grid gap-8">
+              {/* Default Slider */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Default Slider</h3>
+                <div className="grid gap-4">
+                  <Slider label="Volume" showValue />
+                  <Slider label="Brightness" showValue defaultValue={[75]} />
+                  <Slider label="Temperature" showValue defaultValue={[25]} />
+                </div>
+              </div>
+
+              {/* Bordered Slider */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Bordered Slider</h3>
+                <div className="grid gap-4">
+                  <Slider variant="bordered" label="Volume" showValue />
+                  <Slider variant="bordered" label="Brightness" showValue defaultValue={[75]} />
+                  <Slider variant="bordered" label="Temperature" showValue defaultValue={[25]} />
+                </div>
+              </div>
+
+              {/* Ghost Slider */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Ghost Slider</h3>
+                <div className="grid gap-4">
+                  <Slider variant="ghost" label="Volume" showValue />
+                  <Slider variant="ghost" label="Brightness" showValue defaultValue={[75]} />
+                  <Slider variant="ghost" label="Temperature" showValue defaultValue={[25]} />
+                </div>
+              </div>
+
+              {/* Retro Slider */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Retro Slider</h3>
+                <div className="grid gap-4">
+                  <Slider variant="retro" label="Volume" showValue />
+                  <Slider variant="retro" label="Brightness" showValue defaultValue={[75]} />
+                  <Slider variant="retro" label="Temperature" showValue defaultValue={[25]} />
+                </div>
+              </div>
+
+              {/* Modern Slider */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Modern Slider</h3>
+                <div className="grid gap-4">
+                  <Slider variant="modern" label="Volume" showValue />
+                  <Slider variant="modern" label="Brightness" showValue defaultValue={[75]} />
+                  <Slider variant="modern" label="Temperature" showValue defaultValue={[25]} />
+                </div>
+              </div>
+
+              {/* Size Variants */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Size Variants</h3>
+                <div className="grid gap-4">
+                  <Slider size="sm" label="Small" showValue />
+                  <Slider size="md" label="Medium" showValue />
+                  <Slider size="lg" label="Large" showValue />
+                </div>
+              </div>
+
+              {/* States */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">States</h3>
+                <div className="grid gap-4">
+                  <Slider label="With Error" error="Value must be between 0 and 100" />
+                  <Slider label="With Helper Text" helperText="Adjust the value using the slider" />
+                  <Slider label="Disabled" disabled defaultValue={[50]} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
     </div>
