@@ -3,7 +3,7 @@ import {
   Button,
   Input,
   Tooltip,
-  Dialog,
+  DialogRoot,
   DialogContent,
   DialogTrigger,
   Skeleton,
@@ -11,10 +11,13 @@ import {
   SkeletonLines,
   SkeletonTable,
   SkeletonGroup,
+  Alert,
+  Card,
+  Popover,
 } from "@/lib/components";
 import { Geist, Geist_Mono } from "next/font/google";
 import { useState } from "react";
-import { Textarea } from '@/lib/components/textarea';
+import { Textarea } from "@/lib/components/textarea";
 import { Select } from "@/lib/components/select";
 import { Radio } from "@/lib/components/radio";
 import { Checkbox } from "@/lib/components/checkbox";
@@ -50,7 +53,7 @@ export default function Home() {
   const closeDialog = (variant) => {
     setDialogStates((prev) => ({ ...prev, [variant]: false }));
   };
-
+  const variants = ["default", "bordered", "ghost", "retro", "modern"];
   return (
     <div className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
       <main className="min-h-screen p-8">
@@ -295,224 +298,87 @@ export default function Home() {
           <section className="space-y-8">
             <h2 className="text-2xl font-bold text-center">Dialog Variants</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-              {/* Default Dialog */}
-              <div className="space-y-4">
-                <h3 className="font-semibold">Default</h3>
-                <div className="flex justify-center">
-                  <Button
-                    variant="default"
-                    onClick={() => openDialog("default")}
+              {[
+                {
+                  id: "default",
+                  label: "Default",
+                  variant: "default",
+                  description:
+                    "This is a default styled dialog with clean styling.",
+                  content:
+                    "This is the main content of the default dialog. It provides a clean and simple interface for user interactions.",
+                },
+                {
+                  id: "bordered",
+                  label: "Bordered",
+                  variant: "bordered",
+                  description:
+                    "This dialog features a prominent border design.",
+                  content:
+                    "The bordered dialog variant adds visual emphasis with enhanced borders and shadows.",
+                },
+                {
+                  id: "ghost",
+                  label: "Ghost",
+                  variant: "ghost",
+                  description: "A subtle dialog with backdrop blur effects.",
+                  content:
+                    "The ghost dialog creates a subtle, translucent appearance with beautiful backdrop blur effects.",
+                },
+                {
+                  id: "retro",
+                  label: "Retro",
+                  variant: "retro",
+                  description: "Vintage-inspired design with bold shadows.",
+                  content:
+                    "The retro dialog brings back the classic computing aesthetic with bold borders and distinctive shadows.",
+                },
+                {
+                  id: "modern",
+                  label: "Modern",
+                  variant: "modern",
+                  description:
+                    "Sleek gradient design for contemporary interfaces.",
+                  content:
+                    "The modern dialog features elegant gradients and contemporary styling perfect for modern applications.",
+                },
+              ].map(({ id, label, variant, description, content }) => (
+                <div key={id} className="space-y-4">
+                  <h3 className="font-semibold">{label}</h3>
+                  <div className="flex justify-center">
+                    <Button variant={variant} onClick={() => openDialog(id)}>
+                      Open {label} Dialog
+                    </Button>
+                  </div>
+
+                  <DialogRoot
+                    open={dialogStates[id]}
+                    onOpenChange={(open) => !open && closeDialog(id)}
+                    variant={variant}
+                    size="md"
                   >
-                    Open Default Dialog
-                  </Button>
-                </div>
-                <Dialog
-                  open={dialogStates.default}
-                  onOpenChange={() => closeDialog("default")}
-                  variant="default"
-                  size="md"
-                >
-                  <DialogContent
-                    title="Default Dialog"
-                    description="This is a default styled dialog with clean styling."
-                    footer={
-                      <div className="flex space-x-2">
-                        <Button
-                          variant="ghost"
-                          onClick={() => closeDialog("default")}
-                        >
+                    <DialogContent
+                      title={`${label} Dialog`}
+                      description={description}
+                    >
+                      <p>{content}</p>
+                      <div className="pt-4 flex space-x-2 justify-end">
+                        <Button variant="ghost" onClick={() => closeDialog(id)}>
                           Cancel
                         </Button>
                         <Button
-                          variant="default"
-                          onClick={() => closeDialog("default")}
+                          variant={variant}
+                          onClick={() => closeDialog(id)}
                         >
                           Confirm
                         </Button>
                       </div>
-                    }
-                  >
-                    <p>
-                      This is the main content of the default dialog. It
-                      provides a clean and simple interface for user
-                      interactions.
-                    </p>
-                  </DialogContent>
-                </Dialog>
-              </div>
-
-              {/* Bordered Dialog */}
-              <div className="space-y-4">
-                <h3 className="font-semibold">Bordered</h3>
-                <div className="flex justify-center">
-                  <Button
-                    variant="bordered"
-                    onClick={() => openDialog("bordered")}
-                  >
-                    Open Bordered Dialog
-                  </Button>
+                    </DialogContent>
+                  </DialogRoot>
                 </div>
-                <Dialog
-                  open={dialogStates.bordered}
-                  onOpenChange={() => closeDialog("bordered")}
-                  variant="bordered"
-                  size="md"
-                >
-                  <DialogContent
-                    title="Bordered Dialog"
-                    description="This dialog features a prominent border design."
-                    footer={
-                      <div className="flex space-x-2">
-                        <Button
-                          variant="ghost"
-                          onClick={() => closeDialog("bordered")}
-                        >
-                          Cancel
-                        </Button>
-                        <Button
-                          variant="bordered"
-                          onClick={() => closeDialog("bordered")}
-                        >
-                          Confirm
-                        </Button>
-                      </div>
-                    }
-                  >
-                    <p>
-                      The bordered dialog variant adds visual emphasis with
-                      enhanced borders and shadows.
-                    </p>
-                  </DialogContent>
-                </Dialog>
-              </div>
+              ))}
 
-              {/* Ghost Dialog */}
-              <div className="space-y-4">
-                <h3 className="font-semibold">Ghost</h3>
-                <div className="flex justify-center">
-                  <Button variant="ghost" onClick={() => openDialog("ghost")}>
-                    Open Ghost Dialog
-                  </Button>
-                </div>
-                <Dialog
-                  open={dialogStates.ghost}
-                  onOpenChange={() => closeDialog("ghost")}
-                  variant="ghost"
-                  size="md"
-                >
-                  <DialogContent
-                    title="Ghost Dialog"
-                    description="A subtle dialog with backdrop blur effects."
-                    footer={
-                      <div className="flex space-x-2">
-                        <Button
-                          variant="ghost"
-                          onClick={() => closeDialog("ghost")}
-                        >
-                          Cancel
-                        </Button>
-                        <Button
-                          variant="default"
-                          onClick={() => closeDialog("ghost")}
-                        >
-                          Confirm
-                        </Button>
-                      </div>
-                    }
-                  >
-                    <p>
-                      The ghost dialog creates a subtle, translucent appearance
-                      with beautiful backdrop blur effects.
-                    </p>
-                  </DialogContent>
-                </Dialog>
-              </div>
-
-              {/* Retro Dialog */}
-              <div className="space-y-4">
-                <h3 className="font-semibold">Retro</h3>
-                <div className="flex justify-center">
-                  <Button variant="retro" onClick={() => openDialog("retro")}>
-                    Open Retro Dialog
-                  </Button>
-                </div>
-                <Dialog
-                  open={dialogStates.retro}
-                  onOpenChange={() => closeDialog("retro")}
-                  variant="retro"
-                  size="md"
-                >
-                  <DialogContent
-                    title="Retro Dialog"
-                    description="Vintage-inspired design with bold shadows."
-                    footer={
-                      <div className="flex space-x-2">
-                        <Button
-                          variant="ghost"
-                          onClick={() => closeDialog("retro")}
-                        >
-                          Cancel
-                        </Button>
-                        <Button
-                          variant="retro"
-                          onClick={() => closeDialog("retro")}
-                        >
-                          Confirm
-                        </Button>
-                      </div>
-                    }
-                  >
-                    <p>
-                      The retro dialog brings back the classic computing
-                      aesthetic with bold borders and distinctive shadows.
-                    </p>
-                  </DialogContent>
-                </Dialog>
-              </div>
-
-              {/* Modern Dialog */}
-              <div className="space-y-4">
-                <h3 className="font-semibold">Modern</h3>
-                <div className="flex justify-center">
-                  <Button variant="modern" onClick={() => openDialog("modern")}>
-                    Open Modern Dialog
-                  </Button>
-                </div>
-                <Dialog
-                  open={dialogStates.modern}
-                  onOpenChange={() => closeDialog("modern")}
-                  variant="modern"
-                  size="md"
-                >
-                  <DialogContent
-                    title="Modern Dialog"
-                    description="Sleek gradient design for contemporary interfaces."
-                    footer={
-                      <div className="flex space-x-2">
-                        <Button
-                          variant="ghost"
-                          onClick={() => closeDialog("modern")}
-                        >
-                          Cancel
-                        </Button>
-                        <Button
-                          variant="modern"
-                          onClick={() => closeDialog("modern")}
-                        >
-                          Confirm
-                        </Button>
-                      </div>
-                    }
-                  >
-                    <p>
-                      The modern dialog features elegant gradients and
-                      contemporary styling perfect for modern applications.
-                    </p>
-                  </DialogContent>
-                </Dialog>
-              </div>
-
-              {/* Dialog Sizes Demo */}
+              {/* Size Demo Dialog */}
               <div className="space-y-4">
                 <h3 className="font-semibold">Different Sizes</h3>
                 <div className="flex flex-col space-y-2">
@@ -520,43 +386,40 @@ export default function Home() {
                     Size Demo
                   </Button>
                 </div>
-                <Dialog
+                <DialogRoot
                   open={dialogStates.sizeDemo}
-                  onOpenChange={() => closeDialog("sizeDemo")}
+                  onOpenChange={(open) => !open && closeDialog("sizeDemo")}
                   variant="default"
                   size="xl"
                 >
                   <DialogContent
                     title="Dialog Sizes"
                     description="This dialog demonstrates the XL size option."
-                    footer={
-                      <Button
-                        variant="default"
-                        onClick={() => closeDialog("sizeDemo")}
-                      >
-                        Close
-                      </Button>
-                    }
                   >
                     <div className="space-y-4">
                       <p>Dialogs come in multiple sizes:</p>
                       <ul className="list-disc list-inside space-y-1 text-sm">
                         <li>
-                          <strong>sm</strong> - Small, compact dialogs
+                          <strong>sm</strong> – Small, compact dialogs
                         </li>
                         <li>
-                          <strong>md</strong> - Medium, default size
+                          <strong>md</strong> – Medium, default size
                         </li>
                         <li>
-                          <strong>lg</strong> - Large dialogs for more content
+                          <strong>lg</strong> – Large dialogs for more content
                         </li>
                         <li>
-                          <strong>xl</strong> - Extra large for complex forms
+                          <strong>xl</strong> – Extra large for complex forms
                         </li>
                       </ul>
+                      <div className="pt-4 flex justify-end">
+                        <Button onClick={() => closeDialog("sizeDemo")}>
+                          Close
+                        </Button>
+                      </div>
                     </div>
                   </DialogContent>
-                </Dialog>
+                </DialogRoot>
               </div>
             </div>
           </section>
@@ -809,7 +672,9 @@ export default function Home() {
 
           {/* Textarea Component */}
           <section className="space-y-8">
-            <h2 className="text-2xl font-bold text-center">Textarea Variants</h2>
+            <h2 className="text-2xl font-bold text-center">
+              Textarea Variants
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="space-y-6">
                 <div className="space-y-4">
@@ -923,7 +788,9 @@ export default function Home() {
 
           {/* Checkbox Showcase */}
           <section className="space-y-8">
-            <h2 className="text-2xl font-bold text-center">Checkbox Variants</h2>
+            <h2 className="text-2xl font-bold text-center">
+              Checkbox Variants
+            </h2>
             <div className="grid gap-4 md:grid-cols-2">
               <Checkbox
                 variant="default"
@@ -981,8 +848,18 @@ export default function Home() {
                 <h3 className="text-lg font-semibold">Bordered Slider</h3>
                 <div className="grid gap-4">
                   <Slider variant="bordered" label="Volume" showValue />
-                  <Slider variant="bordered" label="Brightness" showValue defaultValue={[75]} />
-                  <Slider variant="bordered" label="Temperature" showValue defaultValue={[25]} />
+                  <Slider
+                    variant="bordered"
+                    label="Brightness"
+                    showValue
+                    defaultValue={[75]}
+                  />
+                  <Slider
+                    variant="bordered"
+                    label="Temperature"
+                    showValue
+                    defaultValue={[25]}
+                  />
                 </div>
               </div>
 
@@ -991,8 +868,18 @@ export default function Home() {
                 <h3 className="text-lg font-semibold">Ghost Slider</h3>
                 <div className="grid gap-4">
                   <Slider variant="ghost" label="Volume" showValue />
-                  <Slider variant="ghost" label="Brightness" showValue defaultValue={[75]} />
-                  <Slider variant="ghost" label="Temperature" showValue defaultValue={[25]} />
+                  <Slider
+                    variant="ghost"
+                    label="Brightness"
+                    showValue
+                    defaultValue={[75]}
+                  />
+                  <Slider
+                    variant="ghost"
+                    label="Temperature"
+                    showValue
+                    defaultValue={[25]}
+                  />
                 </div>
               </div>
 
@@ -1001,8 +888,18 @@ export default function Home() {
                 <h3 className="text-lg font-semibold">Retro Slider</h3>
                 <div className="grid gap-4">
                   <Slider variant="retro" label="Volume" showValue />
-                  <Slider variant="retro" label="Brightness" showValue defaultValue={[75]} />
-                  <Slider variant="retro" label="Temperature" showValue defaultValue={[25]} />
+                  <Slider
+                    variant="retro"
+                    label="Brightness"
+                    showValue
+                    defaultValue={[75]}
+                  />
+                  <Slider
+                    variant="retro"
+                    label="Temperature"
+                    showValue
+                    defaultValue={[25]}
+                  />
                 </div>
               </div>
 
@@ -1011,8 +908,18 @@ export default function Home() {
                 <h3 className="text-lg font-semibold">Modern Slider</h3>
                 <div className="grid gap-4">
                   <Slider variant="modern" label="Volume" showValue />
-                  <Slider variant="modern" label="Brightness" showValue defaultValue={[75]} />
-                  <Slider variant="modern" label="Temperature" showValue defaultValue={[25]} />
+                  <Slider
+                    variant="modern"
+                    label="Brightness"
+                    showValue
+                    defaultValue={[75]}
+                  />
+                  <Slider
+                    variant="modern"
+                    label="Temperature"
+                    showValue
+                    defaultValue={[25]}
+                  />
                 </div>
               </div>
 
@@ -1030,13 +937,179 @@ export default function Home() {
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">States</h3>
                 <div className="grid gap-4">
-                  <Slider label="With Error" error="Value must be between 0 and 100" />
-                  <Slider label="With Helper Text" helperText="Adjust the value using the slider" />
+                  <Slider
+                    label="With Error"
+                    error="Value must be between 0 and 100"
+                  />
+                  <Slider
+                    label="With Helper Text"
+                    helperText="Adjust the value using the slider"
+                  />
                   <Slider label="Disabled" disabled defaultValue={[50]} />
                 </div>
               </div>
             </div>
           </div>
+
+          <section className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Alert Variants</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <Alert
+                variant="default"
+                title="Default Alert"
+                description="This is a default alert."
+                open={true}
+                onOpenChange={function (open: boolean): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+              <Alert
+                variant="bordered"
+                title="Bordered Alert"
+                description="This is a bordered alert."
+                open={true}
+                onOpenChange={function (open: boolean): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+              <Alert
+                variant="ghost"
+                title="Ghost Alert"
+                description="This is a ghost alert."
+                open={true}
+                onOpenChange={function (open: boolean): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+              <Alert
+                variant="retro"
+                title="Retro Alert"
+                description="This is a retro alert."
+                open={true}
+                onOpenChange={function (open: boolean): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+              <Alert
+                variant="modern"
+                title="Modern Alert"
+                description="This is a modern alert."
+                open={true}
+                onOpenChange={function (open: boolean): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+            </div>
+          </section>
+          <section className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Card Variants</h2>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <Card
+                variant="default"
+                imageSrc="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=400&h=200&fit=crop"
+                title="Default Card"
+                description="A simple default card variant."
+                buttons={[
+                  {
+                    label: "Learn More",
+                    onClick: () => alert("Clicked Default Card"),
+                  },
+                  {
+                    label: "Share",
+                    onClick: () => alert("Shared Default Card"),
+                  },
+                ]}
+                clickable
+                onClick={() => alert("Card Body Clicked - Default")}
+              />
+
+              <Card
+                variant="bordered"
+                imageSrc="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=400&h=200&fit=crop"
+                title="Bordered Card"
+                description="This card has a strong bordered look."
+                buttons={[
+                  {
+                    label: "Open",
+                    onClick: () => alert("Clicked Bordered Card"),
+                  },
+                ]}
+                clickable
+                onClick={() => alert("Card Body Clicked - Bordered")}
+              />
+
+              <Card
+                variant="ghost"
+                imageSrc="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=400&h=200&fit=crop"
+                title="Ghost Card"
+                description="A subtle, glassy, translucent look."
+                buttons={[
+                  {
+                    label: "Explore",
+                    onClick: () => alert("Clicked Ghost Card"),
+                  },
+                ]}
+                clickable
+                onClick={() => alert("Card Body Clicked - Ghost")}
+              />
+
+              <Card
+                variant="retro"
+                imageSrc="https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?w=400&h=200&fit=crop"
+                title="Retro Card"
+                description="A funky retro-style with thick borders."
+                buttons={[
+                  {
+                    label: "Time Travel",
+                    onClick: () => alert("Clicked Retro Card"),
+                  },
+                ]}
+                clickable
+                onClick={() => alert("Card Body Clicked - Retro")}
+              />
+
+              <Card
+                variant="modern"
+                imageSrc="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=400&h=200&fit=crop"
+                title="Modern Card"
+                description="A dark gradient modern UI style."
+                buttons={[
+                  {
+                    label: "Launch",
+                    onClick: () => alert("Clicked Modern Card"),
+                  },
+                ]}
+                clickable
+                onClick={() => alert("Card Body Clicked - Modern")}
+              />
+            </div>
+          </section>
+
+          <section className="space-y-8">
+            <h2 className="text-2xl font-bold text-center">Popover Variants</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 place-items-center">
+              {variants.map((variant: any) => (
+                <Popover
+                  key={variant}
+                  variant={variant}
+                  trigger={
+                    <button className="px-4 py-2 rounded bg-gray-200">
+                      {variant} Trigger
+                    </button>
+                  }
+                >
+                  <div>
+                    <p className="font-semibold capitalize">
+                      {variant} Popover
+                    </p>
+                    <p className="text-sm opacity-80">
+                      This is a {variant} variant popover.
+                    </p>
+                  </div>
+                </Popover>
+              ))}
+            </div>
+          </section>
         </div>
       </main>
     </div>
